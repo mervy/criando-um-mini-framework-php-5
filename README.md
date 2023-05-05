@@ -3,18 +3,20 @@
 Curso do Matheus Moura, primeiro MVC prático que aprendi
 como o PHP 5
 
-# Legado
-O código legado está na branch `legacy` para fins históricos, bem como
+## Legado
+
+O código legado estará na branch `legacy` para fins históricos, bem como
 o PHP 5.xx (versão Windows) para executá-lo.
 
-Alternativamente será usado o wampserver com o PHP 5.5 
+Alternativamente será usado o wampserver com o PHP 5.5.
+
 Site: `https://wampserver.aviatechno.net/`
 
-# Updates
-Após a criação do código legado, será atualizado, sem muitas alterações
-para a versão 8.2.5 ou superior do PHP
+## Updates
+Após a criação do código legado, ele será atualizado, sem muitas alterações novas
+para a versão 8.2.5 ou superior do PHP para ser compatível com novas tecnlogias
 
-Branch principal será a `main`, desenvolvimento em `develop`
+A branch principal será a `main`, desenvolvimento em `develop`
 
 ### Sites 
 :: https://tiago.blog.br/video-aulas-criando-um-mini-framework-mvc-com-php/
