@@ -4,34 +4,105 @@ Curso do Matheus Moura, primeiro MVC prático que aprendi
 como o PHP 5
 
 ## Legado
+Criação do código original do MVC do Matheus Moura.
 
-O código legado estará na branch `legacy` para fins históricos, bem como
-o PHP 5.xx (versão Windows) para executá-lo.
+Executando no Wampserver com *`PHP Version 5.6.40`*
 
-Alternativamente será usado o wampserver com o PHP 5.5.
+## Primeira aula
 
-Site: `https://wampserver.aviatechno.net/`
+Estrutura de pastas
+```code
+├── app
+│   ├── controllers
+│   │   ├── indexController.php
+│   │   └── produtosController.php
+│   ├── models
+│   │   └── model.php
+│   └── views
+│       ├── index.phtml
+│       ├── produtosIndex.phtml
+│       └── produtosNovos.phtml
+├── index.php
+├── LICENSE
+├── lss.txt
+├── README.md
+└── system
+    ├── config.php
+    └── controller.php
+```
 
-## Updates
-Após a criação do código legado, ele será atualizado, sem muitas alterações novas
-para a versão 8.2.5 ou superior do PHP para ser compatível com novas tecnlogias
+.htaccess
+```php
+RewriteEngine on
 
-A branch principal será a `main`, desenvolvimento em `develop`
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteCond %{SCRIPT_FILENAME} !-d 
 
-### Sites 
-:: https://tiago.blog.br/video-aulas-criando-um-mini-framework-mvc-com-php/
+RewriteRule ^(.*)$ index.php?key=$1
+```
 
-:: https://vimeo.com/user2210897
+index.php
+```php
+<?php
 
-:: https://www.matheusmoura.com/
+$_GET['key'] = (isset($_GET['key'])) ? $_GET['key'] .'/' : 'index/index';
+$key = $_GET['key'];
+$separator = explode('/', $key);
+$controller = $separator[0];
+$action = ($separator[1] == null ? 'index' : $separator[1]);
 
-### Lista dos arquivos dos vídeos
-* https://vimeo.com/17718083
-* https://vimeo.com/17811099
-* https://vimeo.com/17959783
-* https://vimeo.com/19257583
-* https://vimeo.com/19277096
-* https://vimeo.com/23223302
-* https://vimeo.com/24433338
-* https://vimeo.com/24587437
-* https://vimeo.com/36612268
+require_once('system/controller.php');
+
+require_once('app/controllers/'.$controller.'Controller.php');
+$app = new $controller();
+$app->$action();
+```
+
+system/controller.php
+```php
+<?php
+
+class Controller
+{
+    protected function view($nome)
+    {
+        return require_once('app/views/' . $nome . '.phtml');
+    }
+}
+```
+
+app/controllers/produtosController.php
+```php
+<?php
+
+class Produtos extends Controller
+{
+
+    public function index()
+    {
+        $this->view('produtosIndex');
+    }
+
+    public function novos()
+    {
+        $this->view('produtosNovos');
+    }
+}
+```
+
+app/views/produtosNovos.phtml
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">  
+    <title>Mini Framework MVC</title>
+</head>
+<body>
+    <h1>Produtos novos view</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+</body>
+</html>
+```
+
+Esses são os principais arquivos para o sistema funcionar.
