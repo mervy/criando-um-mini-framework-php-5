@@ -23,9 +23,7 @@ Estrutura de pastas
 │       ├── produtosIndex.phtml
 │       └── produtosNovos.phtml
 ├── index.php
-├── LICENSE
-├── lss.txt
-├── README.md
+├── .htaccess
 └── system
     ├── config.php
     └── controller.php
@@ -106,3 +104,10 @@ app/views/produtosNovos.phtml
 ```
 
 Esses são os principais arquivos para o sistema funcionar.
+
+## Segunda aula
+
+Nesta aula será iniciado os códigos para os models
+
+Também será refatorado/melhorado alguns códigos
+
