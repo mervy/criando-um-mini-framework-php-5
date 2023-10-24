@@ -6,15 +6,15 @@ $separator = explode('/', $key);
 $controller = $separator[0];
 $action = ($separator[1] == null ? 'index' : $separator[1]);
 
-function __autoload($file)
-{
-    require_once('app/models/' . $file . '.php');
-}
+// function __autoload($file)
+// {
+//     require_once('app/models/' . $file . '.php');
+// }
 
 //Se não funcionar acima, usar:
-// spl_autoload_register(function ($file) {
-//     include 'app/models/' . $file . '.php';
-// });
+spl_autoload_register(function ($file) {
+    include 'app/models/' . $file . '.php';
+});
 
 require_once('system/config.php');
 require_once('system/controller.php');
